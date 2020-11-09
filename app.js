@@ -24,13 +24,14 @@ $('#submit').click(function() {
       for(var i=0;i<data.results.bindings.length;i++) {
         var result = data.results.bindings[i]
         console.log(result)
+        // 詳細があれば表示
         if(result.whoDescription == null){
-          $('#result-table').append('<tr><td>' + result.name.value + '</td><td>' + 
+          $('#result-table').append('<tr><td><a href="' + result.who.value + '" target="_blank">' + result.name.value + '</td><td>' + 
             new Date(result.birth.value).getFullYear() + '年生まれ</td>' + 
             '<td>' + " " + '</td></tr>'
             );
         } else {
-          $('#result-table').append('<tr><td>' + result.name.value + '</td><td>' + 
+          $('#result-table').append('<tr><td><a href="' + result.who.value + '" target="_blank">' + result.name.value + '</td><td>' + 
             new Date(result.birth.value).getFullYear() + '年生まれ</td>' + 
             '<td>' + result.whoDescription.value + '</td></tr>'
             );
