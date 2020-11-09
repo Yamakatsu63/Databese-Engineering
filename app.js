@@ -1,13 +1,15 @@
 $('#submit').click(function() {
   console.log($('#date').val())
-  if($('#date').val() == ""){
+  var birth = $('#date').val()
+  if(birth == ""){
     alert("誕生日を入力してください")
   } else {
+    $('#result-title').empty()
     $( '#result-table' ).empty()
-    $( '#result-table' ).append( $( '<pre>' ).text("検索中..."))
+    $( '#result-title' ).append( $( '<pre>' ).text("検索中..."))
     // 誕生日フィルターの追加
     var filter = "FILTER("
-    var date = $('#date').val().substring(5)
+    var date = birth.substring(5)
     // 1950年から2010年までの同じ誕生日でフィルタリング
     for(var i=1950;i<2010;i++){
       filter += 'xsd:date(?birth) = "' + i + '-' + date + '"^^xsd:date || '
@@ -17,10 +19,17 @@ $('#submit').click(function() {
     // クエリの実行
     makeSPARQLQuery( endpointUrl, query, function( data ) {
       $( '#result-table' ).empty()
+      $('#result-title').empty()
+      $('#result-title').append('<p>' + parseDate(birth) + '生まれの有名人</p>')
       for(var i=0;i<data.results.bindings.length;i++) {
         var result = data.results.bindings[i]
-        $('#result-table').append('<tr><td>' + result.name.value + '</td><td>' + new Date(result.birth.value).getFullYear() + '</td></tr>');
+        $('#result-table').append('<tr><td>' + result.name.value + '</td><td>' + new Date(result.birth.value).getFullYear() + '年生まれ</td></tr>');
       }
     });
   }
 })
+
+function parseDate(birth){
+  var dateOfBirth = new Date(birth)
+  return dateOfBirth.getMonth()+1 + "月" + dateOfBirth.getDate() + "日"
+}
