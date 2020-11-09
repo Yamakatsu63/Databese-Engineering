@@ -7,10 +7,11 @@ function makeSPARQLQuery( endpointUrl, sparqlQuery, doneCallback ) {
 }
 
 const endpointUrl = 'https://query.wikidata.org/sparql';
-var sparqlQueryFirst = "SELECT ?who ?name ?birth\n" +
+var sparqlQueryFirst = "SELECT ?who ?whoDescription ?name ?birth\n" +
   "WHERE {\n" +
   "  ?who wdt:P27 wd:Q17;\n" +
   "       wdt:P1559 ?name;\n" +
-  "       wdt:P569 ?birth.\n";
+  "       wdt:P569 ?birth.\n"+
+  "SERVICE wikibase:label { bd:serviceParam wikibase:language 'ja' }";
 
 var sparqlQueryEnd = "} LIMIT 100";

@@ -23,7 +23,18 @@ $('#submit').click(function() {
       $('#result-title').append('<p>' + parseDate(birth) + '生まれの有名人</p>')
       for(var i=0;i<data.results.bindings.length;i++) {
         var result = data.results.bindings[i]
-        $('#result-table').append('<tr><td>' + result.name.value + '</td><td>' + new Date(result.birth.value).getFullYear() + '年生まれ</td></tr>');
+        console.log(result)
+        if(result.whoDescription == null){
+          $('#result-table').append('<tr><td>' + result.name.value + '</td><td>' + 
+            new Date(result.birth.value).getFullYear() + '年生まれ</td>' + 
+            '<td>' + " " + '</td></tr>'
+            );
+        } else {
+          $('#result-table').append('<tr><td>' + result.name.value + '</td><td>' + 
+            new Date(result.birth.value).getFullYear() + '年生まれ</td>' + 
+            '<td>' + result.whoDescription.value + '</td></tr>'
+            );
+        }
       }
     });
   }
