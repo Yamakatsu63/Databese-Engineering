@@ -1,5 +1,4 @@
 function makeSPARQLQuery( endpointUrl, sparqlQuery, doneCallback ) {
-  console.log(sparqlQuery)
 	var settings = {
 		headers: { Accept: 'application/sparql-results+json' },
 		data: { query: sparqlQuery }
