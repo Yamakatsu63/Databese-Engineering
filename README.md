@@ -13,3 +13,7 @@
 ## 使い方
 1. 自分の誕生日を入力する Enter your birthday
 2. 「送信」ボタンをクリックする  Click the "Send" button
+
+## 利用ライブラリ
+- Bootstrap
+- JQuery
